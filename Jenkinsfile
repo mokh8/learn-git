@@ -11,7 +11,7 @@ pipeline{
 
         stage("init"){
             steps{
-                echo "hello ${params.username} ${params.last_name}"
+                echo "hello ${params.username} - ${params.last_name}"
             }
         }
 
@@ -28,8 +28,14 @@ pipeline{
         }
 
         stage("deploy"){
+            input{
+                parameters{
+                    choice(name: 'env', choices['prod', 'dev', 'test'], description: '')
+                }
+                
+            }
             steps{
-                echo "========deploying========"
+                echo "========deploying to ${params.env}========"
             }
         }
     }
