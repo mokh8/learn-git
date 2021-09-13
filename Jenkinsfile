@@ -36,7 +36,7 @@ pipeline{
                 }
             }
             steps{
-                echo "========deploying to ${params.env}========"
+                echo "========deploying to ${env} ========"
             }
         }
     }
