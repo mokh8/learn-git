@@ -10,8 +10,11 @@ pipeline{
     stages{
 
         stage("init"){
+            environment{
+                my_cred = credentials('docker-hub')
+            }
             steps{
-                echo "hello ${params.username} - ${params.last_name}"
+                echo "hello $my_cred_USR - $my_cred_PSW"
             }
         }
 
