@@ -28,11 +28,8 @@ pipeline{
         }
 
         stage("deploy"){
-            input{
-                parameters{
-                    choice(name: 'env', choices['prod', 'dev', 'test'], description: '')
-                }
-                
+            parameters{
+                choice(name: 'env', choices['prod', 'dev', 'test'], description: '')
             }
             steps{
                 echo "========deploying to ${params.env}========"
