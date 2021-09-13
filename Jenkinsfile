@@ -36,7 +36,7 @@ pipeline{
                 }
             }
             steps{
-                echo "========deploying to ${env}========"
+                echo "========deploying to ${env} ========"
             }
         }
     }
