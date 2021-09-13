@@ -28,10 +28,10 @@ pipeline{
         }
 
         stage("deploy"){
-            input{
+            input {
                 message "which env?"
                 ok "done"
-                parameters{
+                parameters {
                     choice(name: 'env', choices['prod', 'dev', 'test'], description: '')
                 }
             }
