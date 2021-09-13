@@ -3,7 +3,7 @@ pipeline{
 
     parameters{
         string(name: 'username', description: '')
-        string(name: 'last-name', description: '')
+        string(name: 'last_name', description: '')
     }
 
 
@@ -11,7 +11,7 @@ pipeline{
 
         stage("init"){
             steps{
-                echo "hello ${params.username} ${params.last-name}"
+                echo "hello ${params.username} ${params.last_name}"
             }
         }
 
