@@ -32,11 +32,11 @@ pipeline{
                 message "which env?"
                 ok "done"
                 parameters {
-                    choice(name: 'env', choices['prod', 'dev', 'test'], description: '')
+                    choice(name: 'env', choices: ['prod', 'dev', 'test'], description: '')
                 }
             }
             steps{
-                echo "========deploying to ${env} ========"
+                echo "========deploying to ${env}========"
             }
         }
     }
