@@ -26,7 +26,7 @@ pipeline{
             }
             steps{
                 echo "========Pushing========"
-                sh "$DOCKER_PSW | docker login -u $DOCKER_USR --password-stdin"
+                sh '$DOCKER_PSW | docker login -u $DOCKER_USR --password-stdin'
                 sh 'docker push mokh8/test-jenkins:2.0'
             }
         }
