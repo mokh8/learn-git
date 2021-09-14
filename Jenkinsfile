@@ -1,52 +1,37 @@
 pipeline{
     agent any
-
-    parameters{
-        string(name: 'username', description: '')
-        string(name: 'last_name', description: '')
+    tools {
+        maven '3.8.2'
     }
-
-
     stages{
-
-        stage("init"){
-            environment{
-                my_cred = credentials('docker-hub')
-            }
-            steps{
-                echo "hello $my_cred_USR - $my_cred_PSW"
-            }
-        }
-
-        stage("build"){
-            steps{
-                echo "========Building========"
-            }
-        }
-
+        
         stage("test"){
             steps{
                 echo "========testing========"
+                sh 'mvn test'
+            }
+        }
+        
+        stage("build")
+            steps{
+                echo "========Building========"
+                sh 'mvn package'
+                sh 'docker build -t mokh8/test-jenkins:2.0 .'
             }
         }
 
-        stage("deploy"){
-            input {
-                message "which env?"
-                ok "done"
-                parameters {
-                    choice(name: 'ENV', choices: ['prod', 'dev', 'test'], description: '')
-                }
+        stage("push"){
+            environment{
+                DOCKER = credentials('docker-hub')
             }
             steps{
-                echo "========deploying to ${ENV}========"
+                echo "========Pushing========"
+                sh "$DOCKER_PSW | docker login -u $DOCKER_USR --password-stdin"
+                sh 'docker push mokh8/test-jenkins:2.0'
             }
         }
     }
     post{
-        always{
-            echo "========always========"
-        }
         success{
             echo "========pipeline executed successfully ========"
         }
