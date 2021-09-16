@@ -5,6 +5,12 @@ pipeline{
     }
     stages{
         
+        stage("init"){
+            steps{
+                echo "building from ${BRANCH_NAME}"
+            }
+        }
+        
         stage("test"){
             steps{
                 echo "========testing========"
