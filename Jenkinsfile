@@ -7,7 +7,7 @@ pipeline{
        
         stage("test"){
             steps{
-                echo "========testingg========"
+                echo "=========testingg========"
                 sh 'mvn test'
             }
         }
